@@ -21,7 +21,6 @@ typedef int boolean;//insere um tipo boolean para facilitar retorno
 //Cria escopo de funcoes
 Pilha* cria_pilha();
 boolean verifica_vazia_pilha(Pilha*);
-boolean verifica_cheia_pilha(Pilha*);
 boolean destroi_pilha(Pilha*);
 void insere_pilha(Pilha*,Conteiner);
 void remove_pilha(Pilha*,Conteiner*);

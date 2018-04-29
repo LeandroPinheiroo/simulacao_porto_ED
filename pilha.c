@@ -24,12 +24,7 @@ boolean destroi_pilha(Pilha *pilha){//detroi a pilha
     return false;//retorna falso caso encontra algum erro
 }
 
-boolean verifica_cheia_pilha(Pilha *pilha){
-    if(pilha->tamanho == 4){//se o tamanho da pilha eh 4 indica que esta cheia
-        return true;//retorna verdadeiro 
-    }
-    return false;//retorna falso caso nao tenha tamanho 4
-}
+
 boolean verifica_vazia_pilha(Pilha *pilha){
     if(pilha->tamanho == 0){//se tamanho igual a 0 indica que pilha esta vazia
         return true;//retorna verdadeiro
@@ -38,25 +33,24 @@ boolean verifica_vazia_pilha(Pilha *pilha){
 }
 
 void insere_pilha(Pilha *pilha,Conteiner conteiner){
-    if(verifica_cheia_pilha(pilha) == false){//verifica se a pilha nao esta cheia
-        if(verifica_vazia_pilha(pilha) == true){//verifica se esta vazia
-            //se estiver vazia cria a primeira celula
-            pilha->ultimo = (Celula*)malloc(sizeof(Celula));//aloca na ultima posicao
-            pilha->ultimo->proximo = NULL;//aponta o proximo para vazio
-            pilha->ultimo->anterior = NULL;//aponta o anterior para vazio
-            pilha->tamanho = 1;//tamanho recebe 1
-            pilha->ultimo->conteiner.valor = conteiner.valor;//insere o elemento
-            return;//sai da funcao
-        }
-        Celula *aux;//cria celula auxiliar para ajudar no empilhamento
-        pilha->ultimo->proximo = malloc(sizeof(Celula));//aloca a proxima posicao
-        aux = (Celula*)pilha->ultimo;//auxiliar recebe o ultimo elemento
-        pilha->ultimo = (Celula*)pilha->ultimo->proximo;//ultimo recebe o proximo
-        pilha->ultimo->anterior = (Celula*)aux;//o anterior ao ultimo recebe o auxiliar
-        pilha->ultimo->conteiner.valor = conteiner.valor;//insere o elemento no ultimo
-        pilha->ultimo->proximo = NULL;//proximo ao ultimo aponta para null
-        pilha->tamanho++;//soma no contador de elementos
+    if(verifica_vazia_pilha(pilha) == true){//verifica se esta vazia
+        //se estiver vazia cria a primeira celula
+        pilha->ultimo = (Celula*)malloc(sizeof(Celula));//aloca na ultima posicao
+        pilha->ultimo->proximo = NULL;//aponta o proximo para vazio
+        pilha->ultimo->anterior = NULL;//aponta o anterior para vazio
+        pilha->tamanho = 1;//tamanho recebe 1
+        pilha->ultimo->conteiner.valor = conteiner.valor;//insere o elemento
+        return;//sai da funcao
     }
+    Celula *aux;//cria celula auxiliar para ajudar no empilhamento
+    pilha->ultimo->proximo = malloc(sizeof(Celula));//aloca a proxima posicao
+    aux = (Celula*)pilha->ultimo;//auxiliar recebe o ultimo elemento
+    pilha->ultimo = (Celula*)pilha->ultimo->proximo;//ultimo recebe o proximo
+    pilha->ultimo->anterior = (Celula*)(aux);//o anterior ao ultimo recebe o auxiliar
+    pilha->ultimo->conteiner.valor = conteiner.valor;//insere o elemento no ultimo
+    pilha->ultimo->proximo = NULL;//proximo ao ultimo aponta para null
+    pilha->tamanho++;//soma no contador de elementos
+
 }
 void remove_pilha(Pilha *pilha, Conteiner *conteiner){
     Celula *aux = NULL;//declara auxiliar para ajudar com o retorno
