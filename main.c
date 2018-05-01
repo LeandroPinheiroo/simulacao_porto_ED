@@ -123,42 +123,43 @@ int main(){
         for(int i=0;i<quantidade_navio;i++){
             if(fila_insere == 4){
                 //Cria pilhas dos navios
+                //por conteiner na pilha primeiro e dps enfileirar
                 navio_fila4 = insere_navio_fila(fila4);
-                navio_fila4.pilha1 = cria_pilha();
-                navio_fila4.pilha2 = cria_pilha();
-                navio_fila4.pilha3 = cria_pilha();
-                navio_fila4.pilha4 = cria_pilha();
-                pilhas_navio(navio_fila4);
+                fila4->ultimo->navio.pilha1 = cria_pilha();
+                fila4->ultimo->navio.pilha2 = cria_pilha();
+                fila4->ultimo->navio.pilha3 = cria_pilha();
+                fila4->ultimo->navio.pilha4 = cria_pilha();
+                pilhas_navio(fila4->ultimo->navio);
                 fila_insere = 1;
             }
             else if(fila_insere == 3){
                 //Cria pilhas dos navios
                 navio_fila3 = insere_navio_fila(fila3);
-                navio_fila3.pilha1 = cria_pilha();
-                navio_fila3.pilha2 = cria_pilha();
-                navio_fila3.pilha3 = cria_pilha();
-                navio_fila3.pilha4 = cria_pilha();
-                pilhas_navio(navio_fila3);
+                fila3->ultimo->navio.pilha1 = cria_pilha();
+                fila3->ultimo->navio.pilha2 = cria_pilha();
+                fila3->ultimo->navio.pilha3 = cria_pilha();
+                fila3->ultimo->navio.pilha4 = cria_pilha();
+                pilhas_navio(fila3->ultimo->navio);
                 fila_insere = 4;
             }
             else if(fila_insere == 2){
                 //Cria pilhas dos navios
                 navio_fila2 = insere_navio_fila(fila2);
-                navio_fila2.pilha1 = cria_pilha();
-                navio_fila2.pilha2 = cria_pilha();
-                navio_fila2.pilha3 = cria_pilha();
-                navio_fila2.pilha4 = cria_pilha();
-                pilhas_navio(navio_fila2);
+                fila2->ultimo->navio.pilha1 = cria_pilha();
+                fila2->ultimo->navio.pilha2 = cria_pilha();
+                fila2->ultimo->navio.pilha3 = cria_pilha();
+                fila2->ultimo->navio.pilha4 = cria_pilha();
+                pilhas_navio(fila2->ultimo->navio);
                 fila_insere = 3;
             }
             else if(fila_insere == 1){
                 navio_fila1 = insere_navio_fila(fila1);
                 //Cria pilhas dos navios
-                navio_fila1.pilha1 = cria_pilha();
-                navio_fila1.pilha2 = cria_pilha();
-                navio_fila1.pilha3 = cria_pilha();
-                navio_fila1.pilha4 = cria_pilha();
-                pilhas_navio(navio_fila1);
+                fila1->ultimo->navio.pilha1 = cria_pilha();
+                fila1->ultimo->navio.pilha2 = cria_pilha();
+                fila1->ultimo->navio.pilha3 = cria_pilha();
+                fila1->ultimo->navio.pilha4 = cria_pilha();
+                pilhas_navio(fila1->ultimo->navio);
                 fila_insere = 2;
             }
         }
@@ -262,8 +263,6 @@ int main(){
                 }
             }
         }
-
-
         if(verifica_navio_descarregou(navio_descarregando) == true){//Se o navio descarregou por completo remove ele da fila
             remove_fila(fila1,&navio_descarregando);
         }

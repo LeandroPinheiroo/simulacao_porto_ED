@@ -59,7 +59,7 @@ void remove_pilha(Pilha *pilha, Conteiner *conteiner){
             aux = pilha->ultimo;//ultimo elemento eh passado para auxiliar
             free(pilha->ultimo);//libera a posicao do ultimo
             pilha->ultimo = NULL;//ultimo elemento aponta para null
-            pilha->tamanho--;//decrementa no tamanho da pilha
+            pilha->tamanho = 0;//decrementa no tamanho da pilha
             conteiner->valor = aux->conteiner.valor;//passa o valor do auxiliar para o conteiner
             return;//sai da funcao
         }
