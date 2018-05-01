@@ -9,6 +9,7 @@ Pilha* cria_pilha(){
     Pilha *pilha;//Cria ponteiro para pilha
     pilha = (Pilha*) malloc(sizeof(Pilha));//Aloca na memoria
     pilha->ultimo = NULL;//ultimo elemento recebe null
+    pilha->tamanho = 0;//Zera o Tamanho da pilha
     return pilha;//retorna a pilha criada
 }
 

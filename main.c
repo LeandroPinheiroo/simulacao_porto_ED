@@ -49,32 +49,26 @@ Conteiner gera_conteiner(){
 
 void pilhas_navio(Navio navio){
     int pilha_atual = 1; 
-    printf("NAVIOS %d\n",navio.quantidade_conteiners);
     for(int i = 0;i<navio.quantidade_conteiners;i++){
         if(pilha_atual == 4){
             Conteiner conteiner = gera_conteiner();
             insere_pilha(navio.pilha4,conteiner);
-            printf("INSERE %d\n",4);
             pilha_atual = 1;
         }
         else if(pilha_atual == 3){
             Conteiner conteiner = gera_conteiner();
             insere_pilha(navio.pilha3,conteiner);
             pilha_atual = 4;
-            printf("INSERE %d\n",3);
         }
         else if(pilha_atual == 2){
             Conteiner conteiner = gera_conteiner();
             insere_pilha(navio.pilha2,conteiner);
             pilha_atual = 3;
-            printf("INSERE %d\n",2);
         }
         else if(pilha_atual == 1){
             Conteiner conteiner = gera_conteiner();
             insere_pilha(navio.pilha1,conteiner);
             pilha_atual = 2;
-            printf("INSERE %d\n",1);
-
         }
     }
 }
@@ -124,52 +118,50 @@ int main(){
     do{
         //NAVIO CHEGA NA FILA
         quantidade_navio =  (rand() % 4);
-                                printf("%d\n", quantidade_navio);
-        Navio navio;
+        printf("Quantidade navio = %d\n", quantidade_navio);
+        Navio navio_fila1,navio_fila2,navio_fila3,navio_fila4;
         for(int i=0;i<quantidade_navio;i++){
             if(fila_insere == 4){
                 //Cria pilhas dos navios
-                navio = insere_navio_fila(fila4);
-                navio.pilha1 = cria_pilha();
-                navio.pilha2 = cria_pilha();
-                navio.pilha3 = cria_pilha();
-                navio.pilha4 = cria_pilha();
-                pilhas_navio(navio);
+                navio_fila4 = insere_navio_fila(fila4);
+                navio_fila4.pilha1 = cria_pilha();
+                navio_fila4.pilha2 = cria_pilha();
+                navio_fila4.pilha3 = cria_pilha();
+                navio_fila4.pilha4 = cria_pilha();
+                pilhas_navio(navio_fila4);
                 fila_insere = 1;
             }
             else if(fila_insere == 3){
                 //Cria pilhas dos navios
-                navio = insere_navio_fila(fila3);
-                navio.pilha1 = cria_pilha();
-                navio.pilha2 = cria_pilha();
-                navio.pilha3 = cria_pilha();
-                navio.pilha4 = cria_pilha();
-                pilhas_navio(navio);
+                navio_fila3 = insere_navio_fila(fila3);
+                navio_fila3.pilha1 = cria_pilha();
+                navio_fila3.pilha2 = cria_pilha();
+                navio_fila3.pilha3 = cria_pilha();
+                navio_fila3.pilha4 = cria_pilha();
+                pilhas_navio(navio_fila3);
                 fila_insere = 4;
             }
             else if(fila_insere == 2){
                 //Cria pilhas dos navios
-                navio = insere_navio_fila(fila2);
-                navio.pilha1 = cria_pilha();
-                navio.pilha2 = cria_pilha();
-                navio.pilha3 = cria_pilha();
-                navio.pilha4 = cria_pilha();
-                pilhas_navio(navio);
+                navio_fila2 = insere_navio_fila(fila2);
+                navio_fila2.pilha1 = cria_pilha();
+                navio_fila2.pilha2 = cria_pilha();
+                navio_fila2.pilha3 = cria_pilha();
+                navio_fila2.pilha4 = cria_pilha();
+                pilhas_navio(navio_fila2);
                 fila_insere = 3;
             }
             else if(fila_insere == 1){
-                navio = insere_navio_fila(fila1);
+                navio_fila1 = insere_navio_fila(fila1);
                 //Cria pilhas dos navios
-                navio.pilha1 = cria_pilha();
-                navio.pilha2 = cria_pilha();
-                navio.pilha3 = cria_pilha();
-                navio.pilha4 = cria_pilha();
-                pilhas_navio(navio);
+                navio_fila1.pilha1 = cria_pilha();
+                navio_fila1.pilha2 = cria_pilha();
+                navio_fila1.pilha3 = cria_pilha();
+                navio_fila1.pilha4 = cria_pilha();
+                pilhas_navio(navio_fila1);
                 fila_insere = 2;
             }
-
         }
-
         //CHAMA VEICULO DE TRANSPORTE caso seja necessario
         for(int i = 0;i<4;i++){
            for(int j = 0;j<5;j++){
@@ -179,25 +171,24 @@ int main(){
                }
             }
         }
-
         //DESCARREGA NAVIO da FILA 1
         Navio navio_descarregando;
         navio_descarregando = fila1->primeiro->navio;
-        
+
         int nao_existe_travessa_livre = false;
-        for(int contpilha = 0;contpilha<4;contpilha++){//Escolhe PILHA DO NAVIO
-            if(contpilha == 1){//caso pilha 1
-                while(fila1->primeiro->navio.pilha1->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+        for(int contpilha = 0;contpilha<4;contpilha++){//Escolhe PILHA DO NAVIOs
+            if(contpilha == 0){//caso pilha 1
+                while(navio_descarregando.pilha1->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
                                 nao_existe_travessa_livre = true;
                                 contpilha = 4;
                             }
-                            if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila1->primeiro->navio.pilha1->ultimo->conteiner);
-                                remove_pilha(fila1->primeiro->navio.pilha1, &fila1->primeiro->navio.pilha1->ultimo->conteiner);
-                                if(fila1->primeiro->navio.pilha1->tamanho == 0){
+                            while(atracamento[i].travessa[j].pilha->tamanho < 5 && navio_descarregando.pilha1->tamanho != 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha1->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha1, &navio_descarregando.pilha1->ultimo->conteiner);
+                                if(navio_descarregando.pilha1->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -206,9 +197,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha==2){
+            }else if(contpilha==1){
                 nao_existe_travessa_livre = false;
-                while(fila1->primeiro->navio.pilha2->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha2->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -216,9 +207,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila1->primeiro->navio.pilha2->ultimo->conteiner);
-                                remove_pilha(fila1->primeiro->navio.pilha2, &fila1->primeiro->navio.pilha2->ultimo->conteiner);
-                                if(fila1->primeiro->navio.pilha2->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha2->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha2, &navio_descarregando.pilha2->ultimo->conteiner);
+                                if(navio_descarregando.pilha2->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -227,9 +218,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha == 3){//Caso pilha 3
+            }else if(contpilha == 2){//Caso pilha 3
                 nao_existe_travessa_livre = false;
-                while(fila1->primeiro->navio.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -237,9 +228,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila1->primeiro->navio.pilha3->ultimo->conteiner);
-                                remove_pilha(fila1->primeiro->navio.pilha3, &fila1->primeiro->navio.pilha3->ultimo->conteiner);
-                                if(fila1->primeiro->navio.pilha3->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha3->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha3, &navio_descarregando.pilha3->ultimo->conteiner);
+                                if(navio_descarregando.pilha3->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -248,9 +239,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha == 4){//caso pilha 4
+            }else if(contpilha == 3){//caso pilha 4
                 nao_existe_travessa_livre = false;
-                while(fila1->primeiro->navio.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -258,9 +249,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila1->primeiro->navio.pilha3->ultimo->conteiner);
-                                remove_pilha(fila1->primeiro->navio.pilha3, &fila1->primeiro->navio.pilha3->ultimo->conteiner);
-                                if(fila1->primeiro->navio.pilha3->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha3->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha3, &navio_descarregando.pilha3->ultimo->conteiner);
+                                if(navio_descarregando.pilha3->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -272,15 +263,16 @@ int main(){
             }
         }
 
-        if(verifica_navio_descarregou(fila1->primeiro->navio) == true){//Se o navio descarregou por completo remove ele da fila
-            remove_fila(fila1,&fila1->primeiro->navio);
+
+        if(verifica_navio_descarregou(navio_descarregando) == true){//Se o navio descarregou por completo remove ele da fila
+            remove_fila(fila1,&navio_descarregando);
         }
         //Descarrega navio da fila 2
         navio_descarregando = fila2->primeiro->navio;
         nao_existe_travessa_livre = false;
         for(int contpilha = 0;contpilha<4;contpilha++){//Escolhe PILHA DO NAVIO
-            if(contpilha == 1){//caso pilha 1
-                while(fila2->primeiro->navio.pilha1->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+            if(contpilha == 0){//caso pilha 1
+                while(navio_descarregando.pilha1->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -288,9 +280,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila2->primeiro->navio.pilha1->ultimo->conteiner);
-                                remove_pilha(fila2->primeiro->navio.pilha1, &fila2->primeiro->navio.pilha1->ultimo->conteiner);
-                                if(fila2->primeiro->navio.pilha1->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha1->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha1, &navio_descarregando.pilha1->ultimo->conteiner);
+                                if(navio_descarregando.pilha1->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -299,9 +291,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha==2){
+            }else if(contpilha==1){
                 nao_existe_travessa_livre = false;
-                while(fila2->primeiro->navio.pilha2->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha2->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -309,9 +301,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila2->primeiro->navio.pilha2->ultimo->conteiner);
-                                remove_pilha(fila2->primeiro->navio.pilha2, &fila2->primeiro->navio.pilha2->ultimo->conteiner);
-                                if(fila2->primeiro->navio.pilha2->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha2->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha2, &navio_descarregando.pilha2->ultimo->conteiner);
+                                if(navio_descarregando.pilha2->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -320,9 +312,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha == 3){//Caso pilha 3
+            }else if(contpilha == 2){//Caso pilha 3
                 nao_existe_travessa_livre = false;
-                while(fila2->primeiro->navio.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -330,9 +322,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila2->primeiro->navio.pilha3->ultimo->conteiner);
-                                remove_pilha(fila2->primeiro->navio.pilha3, &fila2->primeiro->navio.pilha3->ultimo->conteiner);
-                                if(fila2->primeiro->navio.pilha3->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha3->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha3, &navio_descarregando.pilha3->ultimo->conteiner);
+                                if(navio_descarregando.pilha3->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -341,9 +333,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha == 4){//caso pilha 4
+            }else if(contpilha == 3){//caso pilha 4
                 nao_existe_travessa_livre = false;
-                while(fila2->primeiro->navio.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -351,9 +343,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila2->primeiro->navio.pilha3->ultimo->conteiner);
-                                remove_pilha(fila2->primeiro->navio.pilha3, &fila2->primeiro->navio.pilha3->ultimo->conteiner);
-                                if(fila2->primeiro->navio.pilha3->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha3->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha3, &navio_descarregando.pilha3->ultimo->conteiner);
+                                if(navio_descarregando.pilha3->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -365,15 +357,15 @@ int main(){
             }
         }
 
-        if(verifica_navio_descarregou(fila2->primeiro->navio) == true){//Se o navio descarregou por completo remove ele da fila
-            remove_fila(fila2,&fila2->primeiro->navio);
+        if(verifica_navio_descarregou(navio_descarregando) == true){//Se o navio descarregou por completo remove ele da fila
+            remove_fila(fila2,&navio_descarregando);
         }
         //Descarrega navio da fila 3
         navio_descarregando = fila3->primeiro->navio;
         nao_existe_travessa_livre = false;
         for(int contpilha = 0;contpilha<4;contpilha++){//Escolhe PILHA DO NAVIO
-            if(contpilha == 1){//caso pilha 1
-                while(fila3->primeiro->navio.pilha1->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+            if(contpilha == 0){//caso pilha 1
+                while(navio_descarregando.pilha1->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -381,9 +373,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila3->primeiro->navio.pilha1->ultimo->conteiner);
-                                remove_pilha(fila3->primeiro->navio.pilha1, &fila3->primeiro->navio.pilha1->ultimo->conteiner);
-                                if(fila3->primeiro->navio.pilha1->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha1->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha1, &navio_descarregando.pilha1->ultimo->conteiner);
+                                if(navio_descarregando.pilha1->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -392,9 +384,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha==2){
+            }else if(contpilha==1){
                 nao_existe_travessa_livre = false;
-                while(fila3->primeiro->navio.pilha2->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha2->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -402,9 +394,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila3->primeiro->navio.pilha2->ultimo->conteiner);
-                                remove_pilha(fila3->primeiro->navio.pilha2, &fila3->primeiro->navio.pilha2->ultimo->conteiner);
-                                if(fila3->primeiro->navio.pilha2->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha2->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha2, &navio_descarregando.pilha2->ultimo->conteiner);
+                                if(navio_descarregando.pilha2->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -413,9 +405,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha == 3){//Caso pilha 3
+            }else if(contpilha == 2){//Caso pilha 3
                 nao_existe_travessa_livre = false;
-                while(fila3->primeiro->navio.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -423,9 +415,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila3->primeiro->navio.pilha3->ultimo->conteiner);
-                                remove_pilha(fila3->primeiro->navio.pilha3, &fila3->primeiro->navio.pilha3->ultimo->conteiner);
-                                if(fila3->primeiro->navio.pilha3->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha3->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha3, &navio_descarregando.pilha3->ultimo->conteiner);
+                                if(navio_descarregando.pilha3->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -434,9 +426,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha == 4){//caso pilha 4
+            }else if(contpilha == 3){//caso pilha 4
                 nao_existe_travessa_livre = false;
-                while(fila3->primeiro->navio.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -444,9 +436,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila3->primeiro->navio.pilha3->ultimo->conteiner);
-                                remove_pilha(fila3->primeiro->navio.pilha3, &fila3->primeiro->navio.pilha3->ultimo->conteiner);
-                                if(fila3->primeiro->navio.pilha3->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha3->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha3, &navio_descarregando.pilha3->ultimo->conteiner);
+                                if(navio_descarregando.pilha3->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -457,15 +449,15 @@ int main(){
                 }
             }
         }
-        if(verifica_navio_descarregou(fila3->primeiro->navio) == true){//Se o navio descarregou por completo remove ele da fila
-            remove_fila(fila3,&fila3->primeiro->navio);
+        if(verifica_navio_descarregou(navio_descarregando) == true){//Se o navio descarregou por completo remove ele da fila
+            remove_fila(fila3,&navio_descarregando);
         }
         //Descarrega navio da fila 4
         navio_descarregando = fila4->primeiro->navio;
         nao_existe_travessa_livre = false;
         for(int contpilha = 0;contpilha<4;contpilha++){//Escolhe PILHA DO NAVIO
-            if(contpilha == 1){//caso pilha 1
-                while(fila4->primeiro->navio.pilha1->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+            if(contpilha == 0){//caso pilha 1
+                while(navio_descarregando.pilha1->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -473,9 +465,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila4->primeiro->navio.pilha1->ultimo->conteiner);
-                                remove_pilha(fila4->primeiro->navio.pilha1, &fila4->primeiro->navio.pilha1->ultimo->conteiner);
-                                if(fila4->primeiro->navio.pilha1->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha1->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha1, &navio_descarregando.pilha1->ultimo->conteiner);
+                                if(navio_descarregando.pilha1->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -484,9 +476,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha==2){
+            }else if(contpilha==1){
                 nao_existe_travessa_livre = false;
-                while(fila4->primeiro->navio.pilha2->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha2->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -494,9 +486,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila4->primeiro->navio.pilha2->ultimo->conteiner);
-                                remove_pilha(fila4->primeiro->navio.pilha2, &fila4->primeiro->navio.pilha2->ultimo->conteiner);
-                                if(fila4->primeiro->navio.pilha2->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha2->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha2, &navio_descarregando.pilha2->ultimo->conteiner);
+                                if(navio_descarregando.pilha2->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -505,9 +497,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha == 3){//Caso pilha 3
+            }else if(contpilha == 2){//Caso pilha 3
                 nao_existe_travessa_livre = false;
-                while(fila4->primeiro->navio.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -515,9 +507,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila4->primeiro->navio.pilha3->ultimo->conteiner);
-                                remove_pilha(fila4->primeiro->navio.pilha3, &fila4->primeiro->navio.pilha3->ultimo->conteiner);
-                                if(fila4->primeiro->navio.pilha3->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha3->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha3, &navio_descarregando.pilha3->ultimo->conteiner);
+                                if(navio_descarregando.pilha3->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -526,9 +518,9 @@ int main(){
                         }
                     }
                 }
-            }else if(contpilha == 4){//caso pilha 4
+            }else if(contpilha == 3){//caso pilha 4
                 nao_existe_travessa_livre = false;
-                while(fila4->primeiro->navio.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
+                while(navio_descarregando.pilha3->tamanho != 0 && nao_existe_travessa_livre == false){//enquanto pilha nao acaba
                     for(int i = 0;i<4;i++){//Escolhe atracamento
                         for(int j = 0;j<5;j++){//pega travessa
                             if(i == 3 && j == 4){
@@ -536,9 +528,9 @@ int main(){
                                 contpilha = 4;
                             }
                             if(atracamento[i].travessa[j].pilha->tamanho < 5){
-                                insere_pilha(atracamento[i].travessa[j].pilha,fila4->primeiro->navio.pilha3->ultimo->conteiner);
-                                remove_pilha(fila4->primeiro->navio.pilha3, &fila4->primeiro->navio.pilha3->ultimo->conteiner);
-                                if(fila4->primeiro->navio.pilha3->tamanho == 0){
+                                insere_pilha(atracamento[i].travessa[j].pilha,navio_descarregando.pilha3->ultimo->conteiner);
+                                remove_pilha(navio_descarregando.pilha3, &navio_descarregando.pilha3->ultimo->conteiner);
+                                if(navio_descarregando.pilha3->tamanho == 0){
                                     //Sai do for de procura por travessa
                                     j = 5;
                                     i = 4;
@@ -549,8 +541,8 @@ int main(){
                 }
             }
         }
-        if(verifica_navio_descarregou(fila4->primeiro->navio) == true){//Se o navio descarregou por completo remove ele da fila
-            remove_fila(fila4,&fila4->primeiro->navio);
+        if(verifica_navio_descarregou(navio_descarregando) == true){//Se o navio descarregou por completo remove ele da fila
+            remove_fila(fila4,&navio_descarregando);
         }
         //RELATORIO ATUAL
         printw("==ID's dos navios da fila 1==\n");

@@ -10,6 +10,7 @@ Fila* cria_fila(){
     fila = (Fila*) malloc(sizeof(Fila));//Aloca na memoria
     fila->ultimo = NULL;//ultimo elemento recebe null
     fila->primeiro = NULL;//primeiro elemento recebe null
+    fila->tamanho = 0;
     return fila;//retorna a fila criada
 }
 boolean destroi_fila(Fila *fila){//destroi a fila 
