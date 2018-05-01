@@ -1,10 +1,15 @@
 #ifndef _Fila_ 
 #define _Fila_ 
+#include "pilha.h"
 
 typedef struct NAVIO{//Struct para simular navio
     int quantidade_conteiners;
     int id;
     int tempo;
+    Pilha *pilha1;
+    Pilha *pilha2;
+    Pilha *pilha3;
+    Pilha *pilha4;
 }Navio;
 typedef struct NODO{//Struct para celula
     //possui apontadores para o proximo valor e o anterior

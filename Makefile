@@ -1,5 +1,5 @@
 main:	main.o	fila.o	pilha.o
-	gcc main.o fila.o pilha.o -o exe
+	gcc main.o fila.o pilha.o '-lncurses' -o exe
 	rm *.o 
 
 main.o:	main.c

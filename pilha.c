@@ -50,7 +50,6 @@ void insere_pilha(Pilha *pilha,Conteiner conteiner){
     pilha->ultimo->conteiner.valor = conteiner.valor;//insere o elemento no ultimo
     pilha->ultimo->proximo = NULL;//proximo ao ultimo aponta para null
     pilha->tamanho++;//soma no contador de elementos
-
 }
 void remove_pilha(Pilha *pilha, Conteiner *conteiner){
     Celula *aux = NULL;//declara auxiliar para ajudar com o retorno
