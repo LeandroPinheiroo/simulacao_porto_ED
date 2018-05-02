@@ -83,9 +83,3 @@ void mostra_pilha(Pilha *pilha){
         }
     }
 }
-
-
-
-
-
-

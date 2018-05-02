@@ -27,7 +27,6 @@ typedef int boolean;//insere um tipo boolean para facilitar retorno
 //Cria escopo de funcoes
 Fila* cria_fila();
 boolean verifica_vazia_fila(Fila*);
-boolean verifica_cheia_fila(Fila*);
 boolean destroi_fila(Fila*);
 void insere_fila(Fila*,Navio);
 void remove_fila(Fila*,Navio*);

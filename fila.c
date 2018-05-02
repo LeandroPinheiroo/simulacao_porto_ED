@@ -81,8 +81,9 @@ void mostra_fila(Fila *fila){
     if(verifica_vazia_fila(fila) == false){
         Nodo *aux = fila->primeiro;
         while(aux != NULL){
-            printf("Código = %d\n",aux->navio.id);
+            printf("Código = %d \t",aux->navio.id);
             aux = (Nodo*)aux->proximo;
         }
+        printf("\n");
     }
 }
