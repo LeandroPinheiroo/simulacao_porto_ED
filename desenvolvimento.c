@@ -69,10 +69,10 @@ Navio insere_navio_fila(Fila *fila){
     return navio;
 }
 void chama_veiculo_transporte(struct TRAVESSA travessa){
-    for(int i = 0;i<5;i++){
-        remove_pilha(travessa.pilha,&travessa.pilha->ultimo->conteiner);
+    for(int i = 0;i<5;i++){//for que repete 5 vezes indicando que liberara a pilha tida
+        remove_pilha(travessa.pilha,&travessa.pilha->ultimo->conteiner);//Chama funcao para remover conteiner da pilha
     }
-    travessa.pilha->tamanho = 0;
+    travessa.pilha->tamanho = 0;//seta tamanho com 0 para garantir que o conteiner da travessa esta NULL
 }
 boolean verifica_navio_descarregou(Navio navio){
     if(navio.pilha1->tamanho == 0 && navio.pilha2->tamanho == 0 && navio.pilha3->tamanho == 0 && navio.pilha4->tamanho == 0){

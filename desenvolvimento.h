@@ -12,6 +12,7 @@ struct TRAVESSA{
 }Travessa;
 struct ATRACAMENTO{
     struct TRAVESSA travessa[5];
+    int contador_veiculo;
 }Atracamento;
 
 void salva_id_txt(int id);

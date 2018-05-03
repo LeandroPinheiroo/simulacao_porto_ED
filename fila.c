@@ -82,6 +82,7 @@ void mostra_fila(Fila *fila){
         Nodo *aux = fila->primeiro;
         while(aux != NULL){
             printf("Código = %d \t",aux->navio.id);
+            printf("Conteiners = %d \t",aux->navio.quantidade_conteiners);
             aux = (Nodo*)aux->proximo;
         }
         printf("\n");

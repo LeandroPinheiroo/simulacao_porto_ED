@@ -1,8 +1,15 @@
+//====================Leandro Souza Pinheiro====================
+//====================0015137===================================
+//====================Ciência da Computação=====================
+//====================Trabalho de Estrutura de Dados============
+
 #include "pilha.h"
 #include "fila.h"
 #include "desenvolvimento.h"
 #include <time.h>
 #include<unistd.h> 
+#include "keyboard.h"//biblioteca do PARANÁ
+
 
 enum bool{false = 0,true};//Enum para facilitar retorno de verdadeiro e falso
 
@@ -14,6 +21,7 @@ int main(){
     fila4 = cria_fila();
     struct ATRACAMENTO atracamento[4];
     for(int i = 0;i<4;i++){
+        atracamento[i].contador_veiculo = 0;
         for(int j = 0;j<5;j++){
             atracamento[i].travessa[j].pilha = cria_pilha();
             atracamento[i].travessa[j].pilha->tamanho = 0;
@@ -26,7 +34,7 @@ int main(){
     //Cria pilhas dos navios    
     do{
         //NAVIO CHEGA NA FILA
-        quantidade_navio =  (rand() % 5);
+        quantidade_navio =  (rand() % 3);
         Navio navio_fila1,navio_fila2,navio_fila3,navio_fila4;
         if(quantidade_navio != 0){
             for(int i=0;i<quantidade_navio;i++){
@@ -73,10 +81,20 @@ int main(){
                 }
             }
         }
-
+        system("clear");//limpa terminal
         //RELATORIO ATUAL
+        printf("\t\t==ATENÇÃO==\nPressione qualquer tecla para parar a execução\n\n");
         printf("==========RELATORIO==========\n");
-        printf("Quantidade navio chegou = %d\n", quantidade_navio);
+        
+        if(quantidade_navio > 1){
+            printf("\nChegaram %d novos navios ao porto\n", quantidade_navio);
+            printf("Esses navios foram inseridos na fila e vão esperar sua vez para atracar\n\n");
+        }else if(quantidade_navio == 1){
+            printf("\nChegou %d novo navio ao porto\n", quantidade_navio);
+            printf("Esse navio foi inserido na fila e vai esperar sua vez para atracar\n\n");
+        }else{
+            printf("\nNão chegou nenhum novo navio no porto\n\n");
+        }
         if(verifica_vazia_fila(fila1) == false){
             printf("==ID's dos navios da fila 1==\n");
             mostra_fila(fila1);//Navios na fila 1
@@ -92,10 +110,15 @@ int main(){
         if(verifica_vazia_fila(fila4) == false){
             printf("==ID's dos navios da fila 4==\n");
             mostra_fila(fila4);//Navios na fila 2
-        } 
+        }
+        printf("\n");
         for(int i = 0;i<4;i++){
            for(int j = 0;j<5;j++){
-               printf("Atracamento = %d \t Travessa = %d Tamanho = %d\n",i,j,atracamento[i].travessa[j].pilha->tamanho);
+                if(j != 2){
+                    printf("Atracamento = %d \t Travessa = %d Tamanho = %d\n",i,j,atracamento[i].travessa[j].pilha->tamanho);
+                }else if(j == 2){
+                    printf("Atracamento = %d \t Travessa = %d Tamanho = %d \t Veiculo foi utilizado = %d vezes\n",i,j,atracamento[i].travessa[j].pilha->tamanho,atracamento[i].contador_veiculo);
+                }
            }
            printf("\n");
         }
@@ -104,6 +127,7 @@ int main(){
            for(int j = 0;j<5;j++){
                if(atracamento[i].travessa[j].pilha->tamanho == 5){
                    chama_veiculo_transporte(atracamento[i].travessa[j]);
+                   atracamento[i].contador_veiculo++;//Aumenta no contador do veiculo dessa travessa
                    j = 5;//Veiculo do atracamento foi usado e so podera ser usado da proxima vez
                }
             }
@@ -125,6 +149,6 @@ int main(){
         }
         sleep(5);
         
-    }while(1);
+    }while(!keyboard_pressed());//Repete ate usuario pressionar uma tecla, biblioteca cedida pelo PARANÁ
     return 0;
 }
