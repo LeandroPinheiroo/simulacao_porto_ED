@@ -11,6 +11,7 @@ typedef struct NAVIO{//Struct para simular navio
     Pilha *pilha3;
     Pilha *pilha4;
 }Navio;
+
 typedef struct NODO{//Struct para celula
     //possui apontadores para o proximo valor e o anterior
     struct Nodo *proximo;

@@ -34,7 +34,7 @@ int main(){
     //Cria pilhas dos navios    
     do{
         //NAVIO CHEGA NA FILA
-        quantidade_navio =  (rand() % 3);
+        quantidade_navio = (rand() % 100);
         Navio navio_fila1,navio_fila2,navio_fila3,navio_fila4;
         if(quantidade_navio != 0){
             for(int i=0;i<quantidade_navio;i++){
@@ -115,7 +115,7 @@ int main(){
         for(int i = 0;i<4;i++){
            for(int j = 0;j<5;j++){
                 if(j != 2){
-                    printf("Atracamento = %d \t Travessa = %d Tamanho = %d\n",i,j,atracamento[i].travessa[j].pilha->tamanho);
+                    printf("\t\t\t Travessa = %d Tamanho = %d\n",j,atracamento[i].travessa[j].pilha->tamanho);
                 }else if(j == 2){
                     printf("Atracamento = %d \t Travessa = %d Tamanho = %d \t Veiculo foi utilizado = %d vezes\n",i,j,atracamento[i].travessa[j].pilha->tamanho,atracamento[i].contador_veiculo);
                 }

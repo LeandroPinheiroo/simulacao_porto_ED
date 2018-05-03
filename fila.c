@@ -47,7 +47,8 @@ void insere_fila(Fila *fila,Navio navio){
     fila->ultimo = (Nodo*)fila->ultimo->proximo;//ultimo recebe o proximo
     fila->ultimo->navio.id = navio.id;//insere o id
     fila->ultimo->navio.tempo = navio.tempo;//insere o tempo
-    fila->ultimo->navio.quantidade_conteiners = navio.quantidade_conteiners;//insere o elemento    fila->ultimo->proximo = NULL;//proximo ao ultimo aponta para null
+    fila->ultimo->navio.quantidade_conteiners = navio.quantidade_conteiners;//insere o elemento
+    fila->ultimo->proximo = NULL;//proximo ao ultimo aponta para null
     fila->tamanho++;//soma no contador de elementos
 }
 

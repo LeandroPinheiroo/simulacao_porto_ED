@@ -29,6 +29,7 @@ Navio gera_navio(){
     Navio navio;
     srand(time(NULL));
     navio.id = gera_id_navio();
+    navio.tempo = 90;
     navio.quantidade_conteiners = (rand() % 12) + 4;
     return navio;
 }
