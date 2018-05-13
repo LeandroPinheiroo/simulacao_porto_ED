@@ -34,7 +34,7 @@ int main(){
     //Cria pilhas dos navios    
     do{
         //NAVIO CHEGA NA FILA
-        quantidade_navio = (rand() % 100);
+        quantidade_navio = (rand() % 8);
         Navio navio_fila1,navio_fila2,navio_fila3,navio_fila4;
         if(quantidade_navio != 0){
             for(int i=0;i<quantidade_navio;i++){
@@ -134,21 +134,43 @@ int main(){
         }
         //DESCARREGA NAVIO da FILA 1
         if(verifica_vazia_fila(fila1) == false){
+            incrementa_tempo_fila(fila1);//incrementa no tempo que o navio esta parado na fila
             descarrega_navio(atracamento, fila1);
         }
         //Descarrega navio da fila 2
         if(verifica_vazia_fila(fila2) == false){
+            incrementa_tempo_fila(fila2);//incrementa no tempo que o navio esta parado na fila
             descarrega_navio(atracamento, fila2);
         }
         //Descarrega navio da fila 3
         if(verifica_vazia_fila(fila3) == false){
+            incrementa_tempo_fila(fila3);//incrementa no tempo que o navio esta parado na fila
             descarrega_navio(atracamento, fila3);
         }//Descarrega navio da fila 4
         if(verifica_vazia_fila(fila4) == false){
+            incrementa_tempo_fila(fila4);//incrementa no tempo que o navio esta parado na fila
             descarrega_navio(atracamento, fila4);
         }
         sleep(5);
         
     }while(!keyboard_pressed());//Repete ate usuario pressionar uma tecla, biblioteca cedida pelo PARANÁ
+    printf("\n====================Relatório Final====================\n");
+    printf("Caso algum navio tenha ficado na fila sem atracar será mostrado a seguir \n");
+    if(verifica_vazia_fila(fila1) == false){
+            printf("==ID's dos navios da fila 1==\n");
+            mostra_fila(fila1);//Navios na fila 1
+    }
+    if(verifica_vazia_fila(fila2) == false){
+        printf("==ID's dos navios da fila 2==\n");
+        mostra_fila(fila2);//Navios na fila 2
+    }  
+    if(verifica_vazia_fila(fila3) == false){
+        printf("==ID's dos navios da fila 3==\n");
+        mostra_fila(fila3);//Navios na fila 3
+    }         
+    if(verifica_vazia_fila(fila4) == false){
+        printf("==ID's dos navios da fila 4==\n");
+        mostra_fila(fila4);//Navios na fila 2
+    }
     return 0;
 }

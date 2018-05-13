@@ -79,12 +79,20 @@ void remove_fila(Fila *fila, Navio *navio){
 A funcao de mostrar elemento possivelmente nao sera utilizada porem foi criada para testes
 */
 void mostra_fila(Fila *fila){
+    int cont = 0;
     if(verifica_vazia_fila(fila) == false){
         Nodo *aux = fila->primeiro;
         while(aux != NULL){
             printf("Código = %d \t",aux->navio.id);
             printf("Conteiners = %d \t",aux->navio.quantidade_conteiners);
+            printf("Tempo na fila = %d \t",aux->navio.tempo);
             aux = (Nodo*)aux->proximo;
+            cont++;
+            //iF que evita mostrar muitos navios na mesma linha
+            if(cont == 2){
+                cont = 0;
+                printf("\n");
+            }
         }
         printf("\n");
     }

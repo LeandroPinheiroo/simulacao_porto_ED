@@ -15,6 +15,7 @@ struct ATRACAMENTO{
     int contador_veiculo;
 }Atracamento;
 
+void incrementa_tempo_fila(Fila *fila);
 void salva_id_txt(int id);
 int gera_id_navio();
 Navio gera_navio();

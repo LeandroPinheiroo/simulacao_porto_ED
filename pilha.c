@@ -47,7 +47,7 @@ void insere_pilha(Pilha *pilha,Conteiner conteiner){
     pilha->ultimo->proximo = malloc(sizeof(Celula));//aloca a proxima posicao
     aux = (Celula*)pilha->ultimo;//auxiliar recebe o ultimo elemento
     pilha->ultimo = (Celula*)pilha->ultimo->proximo;//ultimo recebe o proximo
-    pilha->ultimo->anterior = (Celula*)(aux);//o anterior ao ultimo recebe o auxiliar
+    pilha->ultimo->anterior = aux;//o anterior ao ultimo recebe o auxiliar
     pilha->ultimo->conteiner.valor = conteiner.valor;//insere o elemento no ultimo
     pilha->ultimo->proximo = NULL;//proximo ao ultimo aponta para null
     pilha->tamanho++;//soma no contador de elementos
