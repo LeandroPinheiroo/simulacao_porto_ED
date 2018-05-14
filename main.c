@@ -34,7 +34,7 @@ int main(){
     //Cria pilhas dos navios    
     do{
         //NAVIO CHEGA NA FILA
-        quantidade_navio = (rand() % 8);
+        quantidade_navio = (rand() % 6);
         Navio navio_fila1,navio_fila2,navio_fila3,navio_fila4;
         if(quantidade_navio != 0){
             for(int i=0;i<quantidade_navio;i++){
